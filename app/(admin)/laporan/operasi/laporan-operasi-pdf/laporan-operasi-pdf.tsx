@@ -245,7 +245,7 @@ export const LaporanOperasiPdf = ({ resultLaporanOperasi }: IPage) => {
           <View style={{ flexDirection: 'column', paddingVertical: 4, flex: 2 }}>
             <Text style={[styles.typoH2Content, { marginLeft: 4, marginBottom: 4 }]}>{resultLaporanOperasi[0] && resultLaporanOperasi?.[0].laporan_operasi}</Text>
             <Image
-              source={'https://hec1.hijr.de/hec/be/antrian/assets_api/upload/' +
+              source={'https://hec.hijr.win/hec/be/antrian/assets_api/upload/' +
                 // 'LENSA_mato_2' +
                 resultLaporanOperasi?.[0].nm_pasien + ' ' +
                 resultLaporanOperasi?.[0].no_rawat.replaceAll('/', '-') +

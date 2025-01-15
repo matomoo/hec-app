@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["bougenvillepangkep.hijr.de", "hec1.hijr.de"],
+    domains: ["bougenvillepangkep.hijr.win", "hec.hijr.win"],
   },
   async headers() {
     return [

@@ -93,7 +93,7 @@ const UpdateTaskId = (
   // only running tid:4
   if (taskId === 3 && minuteDiff > 5) {
     console.log('send taskId 4 and minuteDiff > 15 and noBooking ' + noBooking)
-    const addMinut34 = Math.floor(Math.random() * 5) + 15
+    const addMinut34 = Math.floor(Math.random() * 5) + 10
     const waktuForTid4 = dayjs(waktu, "DD-MM-YYYY HH:mm:ss", true).add(addMinut34, "minute").unix() * 1000
     const res = sendTaskid(noBooking, 4, waktuForTid4)
     res.then(a => {

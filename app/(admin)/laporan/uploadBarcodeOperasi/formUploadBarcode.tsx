@@ -26,7 +26,7 @@ const LaporanOperasiUploadBarcodeForm = ({
 
   const [uploading, setUploading] = useState(false);
 
-  const apiUrl = 'https://hec1.hijr.de/hec/be/antrian/assets_api/upload_api.php';
+  const apiUrl = 'https://hec.hijr.win/hec/be/antrian/assets_api/upload_api.php';
 
   // console.log(registrasiPasienValues)
 
@@ -113,7 +113,7 @@ const LaporanOperasiUploadBarcodeForm = ({
   } else {
     formValues = registrasiPasienValues[0]
     if (formValues) {
-      namaFileImage = 'https://hec1.hijr.de/hec/be/antrian/assets_api/upload/' + formValues.nm_pasien + ' ' + formValues.no_rawat.replaceAll("/", "-") + '.jpg' + '?' + myuuid
+      namaFileImage = 'https://hec.hijr.win/hec/be/antrian/assets_api/upload/' + formValues.nm_pasien + ' ' + formValues.no_rawat.replaceAll("/", "-") + '.jpg' + '?' + myuuid
     }
   }
 
