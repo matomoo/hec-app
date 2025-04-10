@@ -25,8 +25,8 @@ const UpdateTaskId = (
   { taskId, waktu, minuteDiff, noBooking, noSep, jamReg }
     : { taskId: any, waktu: string, minuteDiff: number, noBooking: string, noSep: string, jamReg: string }) => {
 
-  // if (noBooking !== '20240927000002')
-  //   return <div>no proses</div>
+  if (noBooking !== '20250410000032')
+    return <div>no proses</div>
 
   // console.log(taskId)
   // console.log(minuteDiff)
@@ -113,6 +113,15 @@ const UpdateTaskId = (
         const addMinut34 = Math.floor(Math.random() * 7) + Math.floor(Math.random() * 8) + 48
         const waktuForTid4 = dayjs(waktu, "DD-MM-YYYY HH:mm:ss", true).add(addMinut34, "minute").unix() * 1000
         const res = sendTaskid(noBooking, 3, waktuForTid4)
+        res.then(a => {
+          if (a === 'Task=1 ada. TaskId=2 belum ada') {
+            console.log('last tid = 3 but stuck. send taskId 2 and noBooking ' + noBooking)
+            const addMinut23 = Math.floor(Math.random() * 15)
+            const waktuForTid23 = dayjs(waktu, "DD-MM-YYYY HH:mm:ss", true).add(addMinut23, "second").unix() * 1000
+            const res23 = sendTaskid(noBooking, 2, waktuForTid23)
+            res23.then(a => console.log(a))
+          }
+        })
         console.log(res.then(a => console.log(a)))
       }
       return console.log(a);
