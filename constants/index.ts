@@ -1,3 +1,4 @@
+// export const apiUrl = "http://localhost/hec/apiv3/";
 export const apiUrl = "https://hec.hijr.win/hecapiv3/";
 
 // delete

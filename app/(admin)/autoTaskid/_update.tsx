@@ -25,8 +25,8 @@ const UpdateTaskId = (
   { taskId, waktu, minuteDiff, noBooking, noSep, jamReg }
     : { taskId: any, waktu: string, minuteDiff: number, noBooking: string, noSep: string, jamReg: string }) => {
 
-  if (noBooking !== '20250410000032')
-    return <div>no proses</div>
+  // if (noBooking !== '20250411000013')
+  //   return <div>no proses</div>
 
   // console.log(taskId)
   // console.log(minuteDiff)
@@ -45,7 +45,7 @@ const UpdateTaskId = (
   // waiting confirm running tid:1
   if (taskId === undefined && (noSep !== undefined || noSep !== null)) {
     console.log('taskid undefined > send taskId 1 and noBooking ' + noBooking)
-    const waktuReg = dayjs().format('DD-MM-YYYY') + ' ' + jamReg
+    const waktuReg = dayjs().subtract(1, 'day').format('DD-MM-YYYY') + ' ' + jamReg
     const waktuForTid23 = dayjs(waktuReg, "DD-MM-YYYY HH:mm:ss", true).unix() * 1000
     const res23 = sendTaskid(noBooking, 1, waktuForTid23)
     res23.then(a => console.log(a))
