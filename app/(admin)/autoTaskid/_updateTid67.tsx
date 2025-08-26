@@ -38,14 +38,14 @@ const UpdateTid67 = ({ noRawat, waktu, taskId, minuteDiff, noBooking }: { noRawa
 
     console.log('send taskId 6 and noBooking ' + noBooking)
 
-    const addMinut23 = Math.floor(Math.random() * 5) + 20
+    const addMinut23 = Math.floor(Math.random() * 5) + 8
     const waktuForTid23 = dayjs(waktu, "DD-MM-YYYY HH:mm:ss", true).add(addMinut23, "minute").unix() * 1000
     const res23 = sendTaskid(noBooking, 6, waktuForTid23)
     res23.then(a => console.log(a))
 
     console.log('send taskId 7 and noBooking ' + noBooking)
 
-    const addMinut67 = Math.floor(Math.random() * 5) + 15
+    const addMinut67 = Math.floor(Math.random() * 5) + 10
     const waktuForTid67 = dayjs(waktu, "DD-MM-YYYY HH:mm:ss", true).add(addMinut67, "minute").unix() * 1000
     const res67 = sendTaskid(noBooking, 7, waktuForTid67)
     res67.then(a => console.log(a))
@@ -57,7 +57,7 @@ const UpdateTid67 = ({ noRawat, waktu, taskId, minuteDiff, noBooking }: { noRawa
 
     console.log('send taskId 7 and noBooking ' + noBooking)
 
-    const addMinut67 = Math.floor(Math.random() * 5) + 15
+    const addMinut67 = Math.floor(Math.random() * 5) + 10
     const waktuForTid67 = dayjs(waktu, "DD-MM-YYYY HH:mm:ss", true).add(addMinut67, "minute").unix() * 1000
     const res67 = sendTaskid(noBooking, 7, waktuForTid67)
     res67.then(a => console.log(a))
