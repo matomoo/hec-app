@@ -29,6 +29,10 @@ const UpdateTid67 = ({ noRawat, waktu, taskId, minuteDiff, noBooking }: { noRawa
 
   // console.log(data67Taskid)
 
+  if (taskId !== 5)
+    return <Tag color='default'>Waiting task id 5</Tag>
+
+
   const noResep = data67Taskid?.at(data67Taskid.length - 1)?.no_resep
   if (noResep === null || noResep === undefined)
     return <Tag color='default'>No Resep</Tag>
