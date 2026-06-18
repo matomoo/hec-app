@@ -123,16 +123,13 @@ const UpdateTaskId = ({
   // waiting confirm running tid:3
   if (taskId === 2 && minuteDiff > 1) {
     console.log("send taskId 3 and noBooking " + noBooking);
-
-    const addMinut34 =
-      Math.floor(Math.random() * 7) + Math.floor(Math.random() * 8) + 48;
+    const addMinut34 = Math.floor(Math.random() * 7) + 8; // range 8 - 14 minutes
     const waktuForTid4 =
       dayjs(waktu, "DD-MM-YYYY HH:mm:ss", true)
         .add(addMinut34, "minute")
         .unix() * 1000;
     const res = sendTaskid(noBooking, 3, waktuForTid4);
-    // res.then(a => console.log(a))
-    console.log(res.then((a) => console.log(a)));
+    res.then((a) => console.log(a));
   }
 
   // only running tid:4
