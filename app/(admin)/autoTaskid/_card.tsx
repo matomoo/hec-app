@@ -39,7 +39,8 @@ const CardDetail = ({
   } = useMjknGetTaskid(kodeBooking);
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>{error.message}</p>;
-  if (!dataTaskid || dataTaskid.length === 0) return <Tag color="default">No task data</Tag>;
+  if (!dataTaskid || dataTaskid.length === 0)
+    return <Tag color="default">No task data</Tag>;
 
   // Check if current hour is within working hours (17:00 - 20:00)
   const currentHour = dayjs().hour();
@@ -52,10 +53,18 @@ const CardDetail = ({
 
   // const timeTid = dayjs(dataTaskid?.at(dataTaskid.length - 1)?.wakturs.slice(0, -4), "DD-MM-YYYY HH:mm:ss", true).format("DD-MM-YYYY HH:mm:ss")
   const timeTid = lastTaskWaktu
-    ? dayjs(lastTaskWaktu.slice(0, -4), "DD-MM-YYYY HH:mm:ss", true).add(1, "hour").format("DD-MM-YYYY HH:mm:ss")
+    ? dayjs(lastTaskWaktu.slice(0, -4), "DD-MM-YYYY HH:mm:ss", true)
+        .add(1, "hour")
+        .format("DD-MM-YYYY HH:mm:ss")
     : dayjs().format("DD-MM-YYYY HH:mm:ss");
   const minuteDiff = lastTaskWaktu
-    ? dayjs().diff(dayjs(lastTaskWaktu.slice(0, -4), "DD-MM-YYYY HH:mm:ss", true).add(1, "hour"), "minute")
+    ? dayjs().diff(
+        dayjs(lastTaskWaktu.slice(0, -4), "DD-MM-YYYY HH:mm:ss", true).add(
+          1,
+          "hour",
+        ),
+        "minute",
+      )
     : 0;
   const lastTid = lastTask?.taskid;
   return (
@@ -95,9 +104,9 @@ const CardDetail = ({
           />
         )}
 
-        {dataTaskid?.map((elm: Schema_GetTaskId, idx: number) => {
+        {dataTaskid?.map((elm: Schema_GetTaskId) => {
           return (
-            <div key={`taskid-${idx}`} className="pl-4">
+            <div key={`${elm.taskid}-${elm.wakturs}`} className="pl-4">
               <Tag>
                 {elm.taskid} - {elm.wakturs}
               </Tag>

@@ -56,9 +56,12 @@ const UpdateTid67 = ({
     console.log("send taskId 6 and noBooking " + noBooking);
 
     const addMinut23 = Math.floor(Math.random() * 3) + 5;
+    const addSecond23 = Math.floor(Math.random() * 60);
+
     const waktuForTid23 =
       dayjs(waktu, "DD-MM-YYYY HH:mm:ss", true)
         .add(addMinut23, "minute")
+        .add(addSecond23, "second")
         .unix() * 1000;
     const res23 = sendTaskid(noBooking, 6, waktuForTid23);
     res23.then((a) => console.log(a));
@@ -66,9 +69,11 @@ const UpdateTid67 = ({
     console.log("send taskId 7 and noBooking " + noBooking);
 
     const addMinut67 = Math.floor(Math.random() * 3) + 5;
+    const addSecond67 = Math.floor(Math.random() * 60);
     const waktuForTid67 =
       dayjs(waktu, "DD-MM-YYYY HH:mm:ss", true)
         .add(addMinut67, "minute")
+        .add(addSecond67, "second")
         .unix() * 1000;
     const res67 = sendTaskid(noBooking, 7, waktuForTid67);
     res67.then((a) => console.log(a));
@@ -79,9 +84,11 @@ const UpdateTid67 = ({
     console.log(`send taskId 7 and noBooking ${noBooking}`);
 
     const addMinut67 = Math.floor(Math.random() * 3) + 5;
+    const addSecond67 = Math.floor(Math.random() * 60);
     const waktuForTid67 =
       dayjs(waktu, "DD-MM-YYYY HH:mm:ss", true)
         .add(addMinut67, "minute")
+        .add(addSecond67, "second")
         .unix() * 1000;
     const res67 = sendTaskid(noBooking, 7, waktuForTid67);
     res67.then((a) => console.log(a));
