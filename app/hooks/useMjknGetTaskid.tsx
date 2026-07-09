@@ -11,8 +11,8 @@ const useMjknGetTaskid = (kodeBooking: string) => {
       return resQ
 
     },
-    staleTime: 60 * 1000, //10s
-    refetchInterval: 60 * 1000, //10s
+    staleTime: 10 * 60 * 1000, // 10 minutes
+    refetchInterval: 10 * 60 * 1000, // 10 minutes
     refetchOnMount: true,
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,
