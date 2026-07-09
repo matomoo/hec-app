@@ -6,7 +6,7 @@ import { Switch, Space, Typography } from "antd";
 
 const { Text } = Typography;
 
-const autoTaskidPage = () => {
+const AutoTaskidPage = () => {
   const [isEnabled, setIsEnabled] = useState(true);
   // get all no_booking today
   const {
@@ -36,4 +36,4 @@ const autoTaskidPage = () => {
   );
 };
 
-export default autoTaskidPage;
+export default AutoTaskidPage;
