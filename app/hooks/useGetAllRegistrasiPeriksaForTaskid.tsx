@@ -10,8 +10,8 @@ const Use_GetAllRegistrasiPeriksaForTaskid = () => {
       const response = await axios.get(apiUrl + "getAllRegistrasiPeriksaForTaskid");
       return response.data.response.data[0];
     },
-    staleTime: 30 * 1000, //10s
-    refetchInterval: 30 * 1000, //10s
+    staleTime: 10 * 60 * 1000, // 10 minutes
+    refetchInterval: 10 * 60 * 1000, // 10 minutes
     refetchOnMount: true,
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,
