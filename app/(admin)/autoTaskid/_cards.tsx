@@ -1,10 +1,8 @@
 "use client";
-import useMjknGetTaskid from "@/app/hooks/useMjknGetTaskid";
 import { Schema_GetAllRegistrasiPeriksaForTaskid } from "@/app/schema/antrianPoliSchema";
 import React from "react";
 import CardDetail from "./_card";
 import { Space, Tag } from "antd";
-import UpdateTid67 from "./_updateTid67";
 
 const CardsTaskId = ({
   data,
