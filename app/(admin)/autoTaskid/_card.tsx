@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import useMjknGetTaskid from "@/app/hooks/useMjknGetTaskid";
 import { Schema_GetTaskId } from "@/app/schema/antrianPoliSchema";
 import { Space, Tag } from "antd";
@@ -18,18 +19,22 @@ dayjs.extend(customParseFormat);
 dayjs.tz.setDefault("Asia/Makassar");
 //#endregion
 
+type TaskStatus = "completed" | "noSep" | "inProgress" | "taskId99";
+
 const CardDetail = ({
   kodeBooking,
   noSep,
   jamReg,
   noRawat,
-  isEnabled,
+  shouldRun,
+  onStatusChange,
 }: {
   kodeBooking: string;
   noSep: string;
   jamReg: string;
   noRawat: string;
-  isEnabled: boolean;
+  shouldRun: boolean;
+  onStatusChange?: (status: TaskStatus) => void;
 }) => {
   const {
     data: dataTaskid,
@@ -37,19 +42,16 @@ const CardDetail = ({
     error,
     isLoading,
   } = useMjknGetTaskid(kodeBooking);
+
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>{error.message}</p>;
   if (!dataTaskid || dataTaskid.length === 0)
     return <Tag color="default">No task data</Tag>;
 
-  // Check if current hour is within working hours (17:00 - 20:00)
-  const currentHour = dayjs().hour();
-  const isWithinWorkingHours = currentHour >= 17 && currentHour < 20;
-  const shouldRun = isEnabled && isWithinWorkingHours;
-
   // Safely get last task data
   const lastTask = dataTaskid?.at(dataTaskid.length - 1);
   const lastTaskWaktu = lastTask?.wakturs;
+  const lastTid = lastTask?.taskid;
 
   // const timeTid = dayjs(dataTaskid?.at(dataTaskid.length - 1)?.wakturs.slice(0, -4), "DD-MM-YYYY HH:mm:ss", true).format("DD-MM-YYYY HH:mm:ss")
   const timeTid = lastTaskWaktu
@@ -66,7 +68,7 @@ const CardDetail = ({
         "minute",
       )
     : 0;
-  const lastTid = lastTask?.taskid;
+
   return (
     <div>
       <Space direction="vertical">
@@ -75,15 +77,6 @@ const CardDetail = ({
         <div>Minute diff : {minuteDiff}</div>
         <div>Last Task Id : {lastTid}</div>
         <div>No Sep: {noSep}</div> */}
-        {!shouldRun && (
-          <Tag color="default">
-            Auto Task ID paused (
-            {!isEnabled
-              ? "disabled"
-              : `outside working hours (${currentHour}:00)`}
-            )
-          </Tag>
-        )}
         {shouldRun && lastTid !== undefined && (
           <UpdateTaskId
             taskId={lastTid}
@@ -92,6 +85,7 @@ const CardDetail = ({
             noBooking={kodeBooking}
             noSep={noSep}
             jamReg={jamReg}
+            onStatusChange={onStatusChange}
           />
         )}
         {shouldRun && lastTid !== undefined && (

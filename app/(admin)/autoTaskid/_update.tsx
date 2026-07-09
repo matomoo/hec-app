@@ -1,4 +1,4 @@
-import React from "react";
+import { useRef } from "react";
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
@@ -20,6 +20,8 @@ const sendTaskid = async (noBooking: string, taskId: number, waktu: number) => {
   return res.metadata.message;
 };
 
+type TaskStatus = "completed" | "noSep" | "inProgress" | "taskId99";
+
 const UpdateTaskId = ({
   taskId,
   waktu,
@@ -27,6 +29,7 @@ const UpdateTaskId = ({
   noBooking,
   noSep,
   jamReg,
+  onStatusChange,
 }: {
   taskId: any;
   waktu: string;
@@ -34,7 +37,18 @@ const UpdateTaskId = ({
   noBooking: string;
   noSep: string;
   jamReg: string;
+  onStatusChange?: (status: TaskStatus) => void;
 }) => {
+  const statusReportedRef = useRef<TaskStatus | null>(null);
+
+  // Report status only once
+  const reportStatus = (status: TaskStatus) => {
+    if (statusReportedRef.current === null) {
+      statusReportedRef.current = status;
+      onStatusChange?.(status);
+    }
+  };
+
   // if (noBooking !== "20260604000006") return <div>no proses</div>;
 
   // console.log(taskId)
@@ -42,18 +56,32 @@ const UpdateTaskId = ({
   // console.log(noSep)
   // console.log(jamReg)
 
-  if (noSep === undefined || noSep === null)
+  if (noSep === undefined || noSep === null) {
+    reportStatus("noSep");
     return <Tag color="default">No SEP</Tag>;
+  }
 
-  if (taskId === 5 || taskId === 7)
+  if (taskId === 5 || taskId === 7) {
+    reportStatus("completed");
     return <Tag color="success">Task Id Completed</Tag>;
+  }
 
   if (
     taskId === undefined &&
     Number.isNaN(minuteDiff) &&
     (noSep === undefined || noSep === null)
-  )
+  ) {
+    reportStatus("noSep");
     return <Tag color="default">Task Id No Need</Tag>;
+  }
+
+  if (taskId === 99) {
+    reportStatus("taskId99");
+    return <Tag color="default">Last Task Id : 99</Tag>;
+  }
+
+  // Status is in progress
+  reportStatus("inProgress");
 
   // waiting confirm running tid:1
   if (taskId === undefined && (noSep !== undefined || noSep !== null)) {

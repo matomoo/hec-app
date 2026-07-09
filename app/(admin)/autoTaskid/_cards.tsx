@@ -4,16 +4,20 @@ import React from "react";
 import CardDetail from "./_card";
 import { Space, Tag } from "antd";
 
+type TaskStatus = "completed" | "noSep" | "inProgress" | "taskId99";
+
 const CardsTaskId = ({
   data,
-  isEnabled,
+  shouldRun,
+  onStatusChange,
 }: {
   data: Schema_GetAllRegistrasiPeriksaForTaskid[];
-  isEnabled: boolean;
+  shouldRun: boolean;
+  onStatusChange: (status: TaskStatus) => void;
 }) => {
   return (
     <div>
-      {data.map((elm: Schema_GetAllRegistrasiPeriksaForTaskid, idx: number) => {
+      {data.map((elm: Schema_GetAllRegistrasiPeriksaForTaskid) => {
         return (
           <div key={elm.no_rawat} className="my-4">
             <Space>
@@ -28,7 +32,8 @@ const CardsTaskId = ({
               noSep={elm.no_sep}
               jamReg={elm.jam_reg}
               noRawat={elm.no_rawat}
-              isEnabled={isEnabled}
+              shouldRun={shouldRun}
+              onStatusChange={onStatusChange}
             />
           </div>
         );
